@@ -5,20 +5,20 @@ using UnityEngine;
 public class PerlinNoiseTextureClear : MonoBehaviour
 {
     private Texture2D texture;
-    [Range(0f, 1f)] private float shiftPercentage = 0.1f; // % изменения текстуры
-    [Range(0, 100)] public int countOfOreaShifts = 70; // Количество областей, которые будут сдвинуты по всей текстуре
-    public int maxShiftDistance = 2000; // Максимальная дистанция, на которую может быть перенесена область
+    [Range(0f, 1f)] private float shiftPercentage = 0.1f; // % РёР·РјРµРЅРµРЅРёСЏ С‚РµРєСЃС‚СѓСЂС‹
+    [Range(0, 100)] public int countOfOreaShifts = 70; // РљРѕР»РёС‡РµСЃС‚РІРѕ РѕР±Р»Р°СЃС‚РµР№, РєРѕС‚РѕСЂС‹Рµ Р±СѓРґСѓС‚ СЃРґРІРёРЅСѓС‚С‹ РїРѕ РІСЃРµР№ С‚РµРєСЃС‚СѓСЂРµ
+    public int maxShiftDistance = 2000; // РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ РґРёСЃС‚Р°РЅС†РёСЏ, РЅР° РєРѕС‚РѕСЂСѓСЋ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїРµСЂРµРЅРµСЃРµРЅР° РѕР±Р»Р°СЃС‚СЊ
 
-    // Задаются верхние и нижние границы для высоты
+    // Р—Р°РґР°СЋС‚СЃСЏ РІРµСЂС…РЅРёРµ Рё РЅРёР¶РЅРёРµ РіСЂР°РЅРёС†С‹ РґР»СЏ РІС‹СЃРѕС‚С‹
     public int minAreaWidth = 50;
     public int maxAreaWidth = 1000;
 
-    // и ширины переносимой области
+    // Рё С€РёСЂРёРЅС‹ РїРµСЂРµРЅРѕСЃРёРјРѕР№ РѕР±Р»Р°СЃС‚Рё
     public int minAreaHeight = 50;
     public int maxAreaHeight = 1000;
 
-    // Добавьте этот скрипт к объекту с текстурой (например, к плоскости), и скрипт всё сделает автоматически
-    // Помните, что при выходе из PlayMode, тестура сбросится к оригинальной 
+    // Р”РѕР±Р°РІСЊС‚Рµ СЌС‚РѕС‚ СЃРєСЂРёРїС‚ Рє РѕР±СЉРµРєС‚Сѓ СЃ С‚РµРєСЃС‚СѓСЂРѕР№ (РЅР°РїСЂРёРјРµСЂ, Рє РїР»РѕСЃРєРѕСЃС‚Рё), Рё СЃРєСЂРёРїС‚ РІСЃС‘ СЃРґРµР»Р°РµС‚ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё
+    // РџРѕРјРЅРёС‚Рµ, С‡С‚Рѕ РїСЂРё РІС‹С…РѕРґРµ РёР· PlayMode, С‚РµСЃС‚СѓСЂР° СЃР±СЂРѕСЃРёС‚СЃСЏ Рє РѕСЂРёРіРёРЅР°Р»СЊРЅРѕР№ 
 
     void Start()
     {
@@ -28,13 +28,13 @@ public class PerlinNoiseTextureClear : MonoBehaviour
         Vector3 objectSize = renderer.bounds.size;
         Vector2 textureSize = new Vector2(sourceTexture.width, sourceTexture.height);
 
-        // Узнаем, сколько раз текстура повторяется на объекте
+        // РЈР·РЅР°РµРј, СЃРєРѕР»СЊРєРѕ СЂР°Р· С‚РµРєСЃС‚СѓСЂР° РїРѕРІС‚РѕСЂСЏРµС‚СЃСЏ РЅР° РѕР±СЉРµРєС‚Рµ
         Vector2 repeatCount = renderer.material.mainTextureScale;
 
-        // Создаем новую текстуру, соответствующую размеру объекта
+        // РЎРѕР·РґР°РµРј РЅРѕРІСѓСЋ С‚РµРєСЃС‚СѓСЂСѓ, СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰СѓСЋ СЂР°Р·РјРµСЂСѓ РѕР±СЉРµРєС‚Р°
         Texture2D texture = new Texture2D(Mathf.RoundToInt(textureSize.x * repeatCount.x), Mathf.RoundToInt(textureSize.y * repeatCount.y), TextureFormat.RGBA32, true);
 
-        // Заполняем новую текстуру пикселями исходной текстуры
+        // Р—Р°РїРѕР»РЅСЏРµРј РЅРѕРІСѓСЋ С‚РµРєСЃС‚СѓСЂСѓ РїРёРєСЃРµР»СЏРјРё РёСЃС…РѕРґРЅРѕР№ С‚РµРєСЃС‚СѓСЂС‹
         for (int x = 0; x < texture.width; x++)
         {
             for (int y = 0; y < texture.height; y++)
@@ -55,34 +55,34 @@ public class PerlinNoiseTextureClear : MonoBehaviour
         print("Texture is done!");
     }
 
-    // Метод для сдвига областей пикселей на текстуре
+    // РњРµС‚РѕРґ РґР»СЏ СЃРґРІРёРіР° РѕР±Р»Р°СЃС‚РµР№ РїРёРєСЃРµР»РµР№ РЅР° С‚РµРєСЃС‚СѓСЂРµ
     Texture2D ShiftAreaPixels5(Texture2D texture)
     {
-        // Получаем все пиксели из текстуры
+        // РџРѕР»СѓС‡Р°РµРј РІСЃРµ РїРёРєСЃРµР»Рё РёР· С‚РµРєСЃС‚СѓСЂС‹
         Color[] pixels = texture.GetPixels();
         int totalPixels = pixels.Length;
-        // Вычисляем количество пикселей для сдвига
+        // Р’С‹С‡РёСЃР»СЏРµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РїРёРєСЃРµР»РµР№ РґР»СЏ СЃРґРІРёРіР°
         int shiftPixelsCount = Mathf.RoundToInt(totalPixels * shiftPercentage);
 
-        // Повторяем процесс сдвига для заданного количества областей
+        // РџРѕРІС‚РѕСЂСЏРµРј РїСЂРѕС†РµСЃСЃ СЃРґРІРёРіР° РґР»СЏ Р·Р°РґР°РЅРЅРѕРіРѕ РєРѕР»РёС‡РµСЃС‚РІР° РѕР±Р»Р°СЃС‚РµР№
         for (int i = 0; i < countOfOreaShifts; i++)
         {
-            // Выбираем случайный пиксель
+            // Р’С‹Р±РёСЂР°РµРј СЃР»СѓС‡Р°Р№РЅС‹Р№ РїРёРєСЃРµР»СЊ
             int randomIndex = Random.Range(0, totalPixels);
-            // Выбираем случайное расстояние для сдвига по X и Y
+            // Р’С‹Р±РёСЂР°РµРј СЃР»СѓС‡Р°Р№РЅРѕРµ СЂР°СЃСЃС‚РѕСЏРЅРёРµ РґР»СЏ СЃРґРІРёРіР° РїРѕ X Рё Y
             int shiftDistanceX = Random.Range(-maxShiftDistance, maxShiftDistance + 1);
             int shiftDistanceY = Random.Range(-maxShiftDistance, maxShiftDistance + 1);
 
-            // Выбираем случайную ширину и высоту для области
+            // Р’С‹Р±РёСЂР°РµРј СЃР»СѓС‡Р°Р№РЅСѓСЋ С€РёСЂРёРЅСѓ Рё РІС‹СЃРѕС‚Сѓ РґР»СЏ РѕР±Р»Р°СЃС‚Рё
             int areaWidth = Random.Range(minAreaWidth, maxAreaWidth + 1);
             int areaHeight = Random.Range(minAreaHeight, maxAreaHeight + 1);
 
-            // Перебираем все пиксели в области
+            // РџРµСЂРµР±РёСЂР°РµРј РІСЃРµ РїРёРєСЃРµР»Рё РІ РѕР±Р»Р°СЃС‚Рё
             for (int x = 0; x < areaWidth; x++)
             {
                 for (int y = 0; y < areaHeight; y++)
                 {
-                    // Вычисляем индекс пикселя и индекс для сдвига
+                    // Р’С‹С‡РёСЃР»СЏРµРј РёРЅРґРµРєСЃ РїРёРєСЃРµР»СЏ Рё РёРЅРґРµРєСЃ РґР»СЏ СЃРґРІРёРіР°
                     int indexX = (randomIndex % texture.width + x) % texture.width;
                     int indexY = (randomIndex / texture.width + y) % texture.height;
                     int index = indexY * texture.width + indexX;
@@ -91,7 +91,7 @@ public class PerlinNoiseTextureClear : MonoBehaviour
                     int shiftedIndexY = (indexY + shiftDistanceY + texture.height) % texture.height;
                     int shiftedIndex = shiftedIndexY * texture.width + shiftedIndexX;
 
-                    // Если сдвинутый индекс в пределах границ текстуры, меняем местами пиксели
+                    // Р•СЃР»Рё СЃРґРІРёРЅСѓС‚С‹Р№ РёРЅРґРµРєСЃ РІ РїСЂРµРґРµР»Р°С… РіСЂР°РЅРёС† С‚РµРєСЃС‚СѓСЂС‹, РјРµРЅСЏРµРј РјРµСЃС‚Р°РјРё РїРёРєСЃРµР»Рё
                     if (shiftedIndex >= 0 && shiftedIndex < totalPixels)
                     {
                         Color temp = pixels[index];
@@ -102,15 +102,15 @@ public class PerlinNoiseTextureClear : MonoBehaviour
             }
         }
 
-        // Применяем изменения к текстуре
+        // РџСЂРёРјРµРЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ Рє С‚РµРєСЃС‚СѓСЂРµ
         texture.SetPixels(pixels);
         texture.Apply();
 
-        // Возвращаем измененную текстуру
+        // Р’РѕР·РІСЂР°С‰Р°РµРј РёР·РјРµРЅРµРЅРЅСѓСЋ С‚РµРєСЃС‚СѓСЂСѓ
         return (texture);
     }
 
-    // Старый метод - сдвиг пикселей в текстуре
+    // РЎС‚Р°СЂС‹Р№ РјРµС‚РѕРґ - СЃРґРІРёРі РїРёРєСЃРµР»РµР№ РІ С‚РµРєСЃС‚СѓСЂРµ
     void ShiftPixels()
     {
         Color[] pixels = texture.GetPixels();
@@ -121,10 +121,10 @@ public class PerlinNoiseTextureClear : MonoBehaviour
         {
             int randomIndex = Random.Range(0, totalPixels);
             int shiftDistance = Random.Range(1, maxShiftDistance + 1);
-            // Обеспечиваем, что индекс остается в пределах границ текстуры
+            // РћР±РµСЃРїРµС‡РёРІР°РµРј, С‡С‚Рѕ РёРЅРґРµРєСЃ РѕСЃС‚Р°РµС‚СЃСЏ РІ РїСЂРµРґРµР»Р°С… РіСЂР°РЅРёС† С‚РµРєСЃС‚СѓСЂС‹
             int shiftedIndex = (randomIndex + shiftDistance) % totalPixels;             
 
-            // Меняем местами пиксели
+            // РњРµРЅСЏРµРј РјРµСЃС‚Р°РјРё РїРёРєСЃРµР»Рё
             Color temp = pixels[randomIndex];
             pixels[randomIndex] = pixels[shiftedIndex];
             pixels[shiftedIndex] = temp;
